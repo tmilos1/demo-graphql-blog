@@ -9,8 +9,8 @@ import assert = require("assert")
 
 const GET_POSTS = `
 {
-	posts {
-		title
+    posts {
+        title
   }
 }
 `

@@ -1,14 +1,14 @@
-import { getRepository, In } from "typeorm";
+import { getRepository, In } from "typeorm"
 import * as DataLoader from "dataloader"
 
 import * as PostService from "../service/Post"
 import * as CommentService from "../service/Comment"
 import * as CategoryService from "../service/Category"
 
-import { Post } from "../entity/Post";
-import { Category } from "../entity/Category";
-import { Author } from "../entity/Author";
-import { Comment } from "../entity/Comment";
+import { Post } from "../entity/Post"
+import { Category } from "../entity/Category"
+import { Author } from "../entity/Author"
+import { Comment } from "../entity/Comment"
 
 const categoryLoader = new DataLoader((keys: number[]) => batchGetCategoryByPostId(keys))
 const authorLoader = new DataLoader((keys: number[]) => batchGetAuthorByPostId(keys))
@@ -29,7 +29,7 @@ const batchGetCommentsByPostId = async (ids: number[]) => {
     .where("post.id IN (:...ids)", { ids })
     .getMany()
 
-  return ids.map(id => comments.filter(comment => comment.postId === id));
+  return ids.map(id => comments.filter(comment => comment.postId === id))
 }
 
 const resolvers = {
@@ -51,7 +51,7 @@ const resolvers = {
   },
   MutationResponse: {
     __resolveType(mutationResponse, context, info) {
-      return null;
+      return null
     }
   },
   Post: {
@@ -61,7 +61,7 @@ const resolvers = {
     author(post: Post, args, context) {
       return authorLoader.load(post.authorId)
     },
-    async comments(post: Post) {
+    comments(post: Post) {
       return commentsLoader.load(post.id)
     }
   }
