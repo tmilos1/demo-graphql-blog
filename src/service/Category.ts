@@ -18,7 +18,7 @@ export const createCategory = async (category) => {
     )
 
     return {
-        code: "200",
+        code: "201",
         success: true,
         message: "Category has been created.",
         category: savedCategory

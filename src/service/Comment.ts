@@ -18,7 +18,7 @@ export const createComment = async (comment) => {
     )
 
     return {
-        code: "200",
+        code: "201",
         success: true,
         message: "Comment has been created.",
         comment: savedComment

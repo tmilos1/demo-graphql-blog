@@ -19,7 +19,7 @@ export const createPost = async (post) => {
     )
 
     return {
-        code: "200",
+        code: "201",
         success: true,
         message: "Post has been created.",
         post: savedPost

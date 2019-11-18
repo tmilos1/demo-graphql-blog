@@ -40,7 +40,7 @@ describe("categoryService", () => {
         sandbox.stub(typeorm, "getRepository").returns(fakeRepository as any)
 
         const createResult = await CategoryService.createCategory(category)
-        assert(createResult.code === "200")
+        assert(createResult.code === "201")
     })
 
     it("should return code 500 on insert error", async () => {
