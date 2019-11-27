@@ -20,6 +20,8 @@ const defs = [
 const typeDefs = defs + `
   type Query {
     posts: [Post]!
+    authors: [Author]!
+    categories: [Category]!
   }
 
   type File {

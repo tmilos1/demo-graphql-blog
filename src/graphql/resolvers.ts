@@ -38,6 +38,12 @@ const resolvers = {
     async posts(parent, args, context) {
       return await getRepository(Post).find()
     },
+    async authors(parent, args, context) {
+      return await getRepository(Author).find({ order: { fullName: "ASC" } })
+    },
+    async categories(parent, args, context) {
+      return await getRepository(Category).find({ order: { name: "ASC" } })
+    }
   },
   Mutation: {
     async createPost(parent, { post }, context) {
@@ -50,15 +56,15 @@ const resolvers = {
       return await CategoryService.createCategory(category)
     },
     async mainImageUpload(parent, { file }) {
-        // https://github.com/jaydenseric/graphql-upload#class-graphqlupload
-        const { filename } = await file
-        const targetFileName = __dirname + "/../../uploads/" + filename
+      // https://github.com/jaydenseric/graphql-upload#class-graphqlupload
+      const { filename } = await file
+      const targetFileName = __dirname + "/../../uploads/" + filename
 
-        const readStream = fs.createReadStream(filename)
-        const writeStream = fs.createWriteStream(targetFileName)
-        readStream.pipe(writeStream)
+      const readStream = fs.createReadStream(filename)
+      const writeStream = fs.createWriteStream(targetFileName)
+      readStream.pipe(writeStream)
 
-        return file
+      return file
     },
   },
   MutationResponse: {
