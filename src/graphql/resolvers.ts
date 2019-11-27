@@ -1,5 +1,6 @@
 import { getRepository, In } from "typeorm"
 import * as DataLoader from "dataloader"
+import * as fs from "fs"
 
 import * as PostService from "../service/Post"
 import * as CommentService from "../service/Comment"
@@ -47,7 +48,18 @@ const resolvers = {
     },
     async createCategory(parent, { category }, context) {
       return await CategoryService.createCategory(category)
-    }
+    },
+    async mainImageUpload(parent, { file }) {
+        // https://github.com/jaydenseric/graphql-upload#class-graphqlupload
+        const { filename } = await file
+        const targetFileName = __dirname + "/../../uploads/" + filename
+
+        const readStream = fs.createReadStream(filename)
+        const writeStream = fs.createWriteStream(targetFileName)
+        readStream.pipe(writeStream)
+
+        return file
+    },
   },
   MutationResponse: {
     __resolveType(mutationResponse, context, info) {

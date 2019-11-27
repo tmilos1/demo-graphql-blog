@@ -22,6 +22,12 @@ const typeDefs = defs + `
     posts: [Post]!
   }
 
+  type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+  }
+
   interface MutationResponse {
     code: String!
     success: Boolean!
@@ -32,6 +38,7 @@ const typeDefs = defs + `
     createPost(post: CreatePostInput): CreatePostMutationResponse
     createComment(comment: CreateCommentInput): CreateCommentMutationResponse
     createCategory(category: CreateCategoryInput): CreateCategoryMutationResponse
+    mainImageUpload(file: Upload): File
   }
 `
 
