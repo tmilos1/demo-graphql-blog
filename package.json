@@ -9,7 +9,7 @@
       "@types/sinon": "^7.5.0",
       "apollo-server-testing": "^2.9.9",
       "http-status-codes": "^1.4.0",
-      "mocha": "^6.2.2",
+      "mocha": "^10.2.0",
       "nodemon": "^1.19.4",
       "sinon": "^7.5.0",
       "ts-node": "^3.3.0",
